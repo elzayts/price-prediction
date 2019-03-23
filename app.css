@@ -1,0 +1,27 @@
+body {
+	background-color: #B9EDFF; 
+	margin: 0;
+	height: 100vh;
+	text-align: center;
+}
+
+#form {
+	background-color: white;
+	width: 70%;
+	display: inline-block;
+	text-align: center;
+}
+
+#form input {
+	background-color: white;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	border:1px solid #BEBEBE;
+	padding: 7px;
+	outline: none;
+}
+
+#form input {
+	padding: right;
+}
