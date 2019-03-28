@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 app=Flask(__name__)
 
 filters = []
+obj = Prediction()
 
 
 @app.route("/main", methods=['GET', 'POST'])
@@ -10,9 +11,8 @@ def main():
 
 #@app.route("/info", methods=['GET'])
 #def show():
- #   filt=tuple(filters)
-  #  filters.clear()
-   # return render_template("info.html", f=filt)
+ #    price=obj.return_cost()
+   # return render_template("info.html", p=price)
 
 
 @app.route("/ans", methods=['POST', 'GET'])
@@ -31,6 +31,9 @@ def get_filt():
     #filters.append(t_area)
     #filters.append(l_area)
     #filters.append(residence)
+    #   obj.filters=tuple(filters)
+  #  filters.clear()
+    
 
     return redirect(url_for('main'))
 
