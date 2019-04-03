@@ -17,9 +17,9 @@ def main():
       return render_template("index1.html")
 
 
-@app.route("/info", methods=['GET'])
+@app.route("/results", methods=['GET'])
 def show():
-    return render_template("info.html")
+    return render_template("results.html")
 
 
 
