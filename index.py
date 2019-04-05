@@ -19,7 +19,9 @@ def main():
 
 @app.route("/results", methods=['GET'])
 def show():
-    return render_template("results.html")
+    #price will be returned after processing data from db
+    #another info will be shown on the page as well
+    return render_template("results.html", p=price)
 
 
 
