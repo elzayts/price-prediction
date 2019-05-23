@@ -17,14 +17,16 @@ def get_links(html):
 
 def get_price(html):
     soup=BeautifulSoup(html, 'lxml')
+    value = ''
     try:
         prriice = soup.find('div', class_='ov-price')
+        price = prriice.text
+        price = price.replace(' ', '')
+        value = price.split('\n')#список вартість + валюта
     except:
         prriice = ''
         
-    price = prriice.text
-    price = price.replace(' ', '')
-    value = price.split('\n')#список вартість + валюта
+    print(value)
     return value
 
     
@@ -33,10 +35,11 @@ def get_type_house(html):
     soup=BeautifulSoup(html, 'lxml')    
     try:
         all_params = soup.find('dl', class_ = 'ov-params-list')
+        all_params = all_params.text
+        all_params = all_params.replace(' ','')
     except:
         all_params = ''
-    all_params = all_params.text
-    all_params = all_params.replace(' ','')
+    
     alp = all_params.split('\n')
     alp = [x for x in alp if x != '']
     leng_list = len(alp)
@@ -50,10 +53,11 @@ def get_state(html):
     soup=BeautifulSoup(html, 'lxml')    
     try:
         all_params = soup.find('dl', class_ = 'ov-params-list')
+        all_params = all_params.text
+        all_params = all_params.replace(' ','')
     except:
         all_params = ''
-    all_params = all_params.text
-    all_params = all_params.replace(' ','')
+    
     alp = all_params.split('\n')
     alp = [x for x in alp if x != '']
     leng_list = len(alp)
@@ -68,10 +72,10 @@ def get_rooms(html):
     soup=BeautifulSoup(html, 'lxml')    
     try:
         all_params = soup.find('dl', class_ = 'ov-params-list')
+        all_params = all_params.text
+        all_params = all_params.replace(' ','')
     except:
         all_params = ''
-    all_params = all_params.text
-    all_params = all_params.replace(' ','')
     alp = all_params.split('\n')
     alp = [x for x in alp if x != '']
     leng_list = len(alp)
@@ -86,10 +90,10 @@ def get_square(html):
     soup=BeautifulSoup(html, 'lxml')    
     try:
         all_params = soup.find('dl', class_ = 'ov-params-list')
+        all_params = all_params.text
+        all_params = all_params.replace(' ','')
     except:
         all_params = ''
-    all_params = all_params.text
-    all_params = all_params.replace(' ','')
     alp = all_params.split('\n')
     alp = [x for x in alp if x != '']
     leng_list = len(alp)
@@ -114,18 +118,28 @@ def get_adress(html):
     all_title = soup.find_all('h2', class_ ='catalog-item__title')
     adress = []
     for i in all_title:
-        adress.append(i.find('a').text)
+        adres = i.find('a').text
+        adress.append(adres)
     return adress
 
 
+def adress_district(adress):
+    house = []
+    district  = []
+    for i in adress:
+        last = i.rfind(',', 0, len(i))
+        house.append(i[0:last])
+        district.append(i[last+2:len(i)])
+    adress_data = {
+        'street': house,
+        'district': district}
+    
+    return adress_data
 
 
 
 
-
-
-
-def write_csv (value, currency, square1, square2, square3, room, state, type_house, adress):
+def write_csv (value, currency, square1, square2, square3, room, state, type_house, adress, house_dist):
    data = {
         'square1': square1,
         'square2': square2,
@@ -135,9 +149,10 @@ def write_csv (value, currency, square1, square2, square3, room, state, type_hou
         'state':state,
         'type_house':type_house,
         'room':room,
-        'adress':adress
+        'street':house_dist['street'],
+        'dist':house_dist['district']
         }
-   df = pd.DataFrame(data, columns = ['square1', 'square2', 'square3', 'room', 'type_house', 'state','value', 'currency','adress'])
+   df = pd.DataFrame(data, columns = ['square1', 'square2', 'square3', 'room', 'type_house', 'state','value', 'currency','street', 'dist'])
    df.to_csv('D:\parsing\data.csv')
 
 
@@ -154,7 +169,7 @@ def main():
     square2 = []
     square3 = []
     next_link = get_nextpage(html)
-    m = 1
+    m = 100
     n = 0
     adres = get_adress(html)
     ##while next_link!='':
@@ -163,24 +178,34 @@ def main():
         all_links = all_links + get_links(nex_html)
         next_link = get_nextpage(nex_html)
         n=n+1
-        adres = adres+get_adress(nex_html)
+        adres = adres + get_adress(nex_html)
+    house_dist =  adress_district(adres)
+    
     for i in all_links:
         html= get_html(i)
         price = get_price(html)
-        prices.append(price[0])
-        currency.append(price[1])
+        if price != '':
+            prices.append(price[0])
+            currency.append(price[1])
+        else:
+            prices.append('')
+            currency.append('')
         square = get_square(html)
-        squares = square.split('/')
+        squares = square.split('/') 
         square1.append(squares[0])
-        square2.append(squares[1])
-        square3.append(squares[2][:-2])
+        if len(squares) < 2:
+            square2.append('')
+            square3.append('')
+        else:
+            square2.append(squares[1])
+            square3.append(squares[2][:-2])
         room = get_rooms(html)
         state = get_state(html)
         type_house = get_type_house(html)
         rooms.append(room)
         states.append(state)
         types_house.append(type_house)
-    write_csv(prices, currency, square1, square2, square3, rooms, states, types_house, adres,)   
+    write_csv(prices, currency, square1, square2, square3, rooms, states, types_house, adres, house_dist)   
      
 
 
