@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Prediction of real estate price in Kyiv</title>
+    <style>
+   body {
+    background:  url(data:image/jpeg;base64,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);
+    background-position: center center;
+    background-size: 100% 350%;
+   }
+
+   #form{
+     background: rgba(255,245,215,.5);
+    padding: 40px;
+    opacity: 50%;
+    height: 350%;
+    width: 50%;
+
+ }
+.form-list {
+    display: block;
+    font-size: 16px;
+    font-family: sans-serif;
+    font-weight: 700;
+    color: #444;
+    line-height: 1.3;
+    padding: .6em 1.4em .5em .8em;
+    width: 35%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    border: 1px solid #aaa;
+    box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
+    border-radius: .5em;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
+      linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);
+    background-repeat: no-repeat, repeat;
+    background-position: right .7em top 50%, 0 0;
+    background-size: .65em auto, 100%;
+}
+.form-list::-ms-expand {
+    display: none;
+}
+.form-list:hover {
+    border-color: #888;
+}
+.form-list:focus {
+    border-color: #aaa;
+    box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
+    box-shadow: 0 0 0 3px -moz-mac-focusring;
+    color: #222;
+    outline: none;
+}
+.form-list option {
+    font-weight:normal;
+}
+
+ .button {
+    background-color: #647899;
+  box-shadow: 0 5px 0 #5e708e;
+  color: white;
+  padding: 1em 1.5em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.button:hover {
+  background-color: #4d6287;
+  cursor: pointer;
+}
+
+.button:active {
+  box-shadow: none;
+  top: 5px;
+}
+
+
+
+  </style>
+</head>
+<body>
+	<div id="form">
+		<h2>Выберите характеристики объекта</h2>
+		<form action="" method="post">
+			{{form.hidden_tag()}}
+            <p>Район</p>
+			<p>
+            {{ form.distr(class_="form-list") }}
+				{% for error in form.distr.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+
+            <p>Количество комнат</p>
+        <p>
+            {{ form.rooms(class_="radio") }}
+			{% for error in form.rooms.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+            <p>Состояние</p>
+        <p>
+            {{ form.state(class_="form-list") }}
+			{% for error in form.state.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+            <p>Тип дома</p>
+			<p
+            {{ form.house_type(class_="radio") }}
+			{% for error in form.house_type.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+            <p>Общая площадь</p>
+			<p>
+            {{ form.square_min(class_="form-input") }}
+				{% for error in form.square_min.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+            <p>Жилая площадь</p>
+			<p>
+            {{ form.square_max(class_="form-input") }}
+				{% for error in form.square_max.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p> <br>
+        <p>{{ form.submit(class_="button") }}</p>
+            <br>
+
+		</form>
+	</div>
+
+</body>
+</html>
+
+
+
+<!--District:
+			<select name="district" required>
+				<option value="Голосеевский">Голосеевский</option>
+				<option value="Троещина">Троещина</option>
+			</select><br>
+			Number of rooms:
+			<p><input type="radio" name="rooms" value=1 required>1
+				<input type="radio" name="rooms" value=2>2
+				<input type="radio" name="rooms" value=3>3
+				<input type="radio" name="rooms" value=4>4
+				<input type="radio" name="rooms" value=5>5+</p>
+			State:
+			<p><input type="radio" name="state" value="Евроремонт">Евроремонт<br>
+				<input type="radio" name="state" value="Хорошее">Хорошее<br>
+				<input type="radio" name="state" value="От строителей">От строителей<br>
+				<input type="radio" name="state" value="Требуется капитальный ремонт">Требуется капитальный ремонт<br>
+				<input type="radio" name="state" value="Незаконченный ремонт">Незаконченный ремонт</p>
+		<P><input type="submit" value="Submit"></P><br>-->
