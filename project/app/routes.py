@@ -2,7 +2,7 @@ from app import app
 from flask import render_template, request, redirect, url_for
 #from DB_get import get_rows
 from app.form import MyForm
-from app.my import *
+from app.model import *
 
 
 @app.route("/index1", methods=['GET', 'POST'])
