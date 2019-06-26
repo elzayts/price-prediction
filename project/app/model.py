@@ -34,9 +34,7 @@ le = LabelEncoder()
 cat = ['type_house', 'state', 'dist']
 for x in cat:
     df[x] = le.fit_transform(df[x].astype(str))
-    #print(df[x])
-
-#df.to_csv(r"C:\python\predict\hate1.csv")
+ 
 
 
 df_s = df.drop(['Unnamed: 0', 'currency', 'value'], axis=1)
@@ -51,15 +49,6 @@ for x in range(len(df.index)):  # создаем матрицу на вход д
     temp = []
 
 X = np.array(X)
-
-
-# for i in range(len(df.index)): #меняем все типы на float
-#   for j in range(8):
-#      try:
-#         X[i][j] = float(X[i][j])
-#    except ValueError:
-#       X[i][j] = "0"
-#      X[i][j] = float(X[i][j])
 
 xgb_r = xgboost.XGBRegressor(n_estimators=100, learning_rate=0.08, gamma=0, subsample=0.75,
                              colsample_bytree=1, max_depth=7)
