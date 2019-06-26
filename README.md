@@ -1,6 +1,10 @@
 # price-prediction project
 Web-site where user can get real estate price, based on its characteristics
 
+##Presentation & demonstration of the project
+
+https://drive.google.com/open?id=1bZhj4zmSeZbZVgKsAPJb7lI9L2ssBjKK
+
 
 ## Getting started
 
