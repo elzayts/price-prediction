@@ -8,7 +8,7 @@ from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import explained_variance_score
 
-df = pd.read_csv("C:/python/predict/finally.csv")
+df = pd.read_csv("C:/python/predict/dataset.csv")
 
 
 def clean_square(df, a):
